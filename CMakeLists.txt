@@ -8,10 +8,16 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(CMakeSFMLProject  src/Main.cpp)
-target_sources(CMakeSFMLProject PRIVATE
-                            src/Game.h
-                            src/Game.cpp
-                           )
+
+# Add include directory to the project
+target_include_directories(CMakeSFMLProject PRIVATE include)
+
+# Add source files to the project
+target_sources(CMakeSFMLProject PRIVATE src/Game.cpp)
+
+# Add assets directory to the project
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
