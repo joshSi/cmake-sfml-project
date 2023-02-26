@@ -1,10 +1,20 @@
-#include <SFML/Graphics.hpp>
 #include "Game.h"
+#include <SFML/Graphics.hpp>
 
-Game::Game(int framerate)
+int runGame(int framerate)
 {
-    auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
+    auto window = sf::RenderWindow{ { 400u, 400u }, "CMakeSFMLProject" };
     window.setFramerateLimit(framerate);
+
+    sf::Texture texture;
+    if (!texture.loadFromFile("assets/cmake.png"))
+    {
+        // Error: Failed to load the texture
+        return 1;
+    }
+
+    // Create a sprite using the texture
+    sf::Sprite sprite(texture);
 
     while (window.isOpen())
     {
@@ -17,6 +27,8 @@ Game::Game(int framerate)
         }
 
         window.clear();
+        window.draw(sprite);
         window.display();
     }
+    return 0;
 }

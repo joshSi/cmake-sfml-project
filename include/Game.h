@@ -1,10 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
+#include <SFML/Graphics.hpp>
 
-class Game
-{
-public:
-	Game(int framerate);
-};
+int runGame(int framerate);
 
 #endif
