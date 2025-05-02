@@ -23,7 +23,7 @@ target_sources(SFMLTemplate PRIVATE
     src/button.cpp)
 
 # Add assets directory to the project
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/bin)
 
 target_compile_features(SFMLTemplate PRIVATE cxx_std_17)
 target_link_libraries(SFMLTemplate PRIVATE SFML::Graphics)

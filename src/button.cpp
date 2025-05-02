@@ -3,14 +3,11 @@
 #include <iostream>
 
 Button::Button(sf::Vector2f position, sf::Vector2f size, sf::Color color)
-    : m_position(position)
-    , m_size(size)
-    , m_color(color)
 {
     // Set up the rectangle shape
-    m_rectShape.setPosition(m_position);
-    m_rectShape.setSize(m_size);
-    m_rectShape.setFillColor(m_color);
+    m_rectShape.setPosition(position);
+    m_rectShape.setSize(size);
+    m_rectShape.setFillColor(color);
 };
 
 void Button::onClick(sf::Vector2f mousePos)
@@ -19,7 +16,21 @@ void Button::onClick(sf::Vector2f mousePos)
     {
         m_isClicked = true;
         std::cout << "Button pressed!" << std::endl;
+        if (m_clickAction != nullptr)
+        {
+            clickAction(mousePos);
+        }
     }
+}
+
+void Button::setClickAction(std::function<void(sf::Vector2f, Button&)> clickAction)
+{
+    m_clickAction = clickAction;
+}
+
+void Button::clickAction(sf::Vector2f mousePos)
+{
+    m_clickAction(mousePos, *this);
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const

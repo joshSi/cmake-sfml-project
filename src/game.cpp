@@ -10,6 +10,19 @@ int runGame(int framerate)
 
   Button button(sf::Vector2f(100, 100), sf::Vector2f(200, 50), sf::Color::Green);
 
+  auto clickAction = [](sf::Vector2f mousePos, Button& button) {
+      if (button.m_rectShape.getFillColor() == sf::Color::Green)
+      {
+          button.m_rectShape.setFillColor(sf::Color::Blue);
+      }
+      else
+      {
+          button.m_rectShape.setFillColor(sf::Color::Green);
+      }
+  };
+
+  button.setClickAction(clickAction);
+
   sf::Texture texture;
   if (!texture.loadFromFile("assets/cmake.png"))
   {
@@ -40,3 +53,4 @@ int runGame(int framerate)
   }
   return 0;
 }
+

@@ -8,15 +8,14 @@ class Button : public Clickable
 public:
     Button(sf::Vector2f position, sf::Vector2f size, sf::Color color);
     virtual void onClick(sf::Vector2f mousePos);
+    void setClickAction(std::function<void(sf::Vector2f, Button&)> clickAction);
+    void clickAction(sf::Vector2f mousePos);
 
-private:
-    sf::Vector2f m_position;
-    sf::Vector2f m_size;
-    sf::Color m_color;
     sf::RectangleShape m_rectShape;
 
+private:
     bool m_isClicked;
-
+    std::function<void(sf::Vector2f, Button&)> m_clickAction;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
