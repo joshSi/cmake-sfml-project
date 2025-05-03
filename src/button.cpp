@@ -3,35 +3,35 @@
 
 Button::Button(sf::Vector2f position, sf::Vector2f size, sf::Color color)
 {
-    // Set up the rectangle shape
-    m_rectShape.setPosition(position);
-    m_rectShape.setSize(size);
-    m_rectShape.setFillColor(color);
+  // Set up the rectangle shape
+  m_rectShape.setPosition(position);
+  m_rectShape.setSize(size);
+  m_rectShape.setFillColor(color);
 };
 
 void Button::onClick(sf::Vector2f mousePos)
 {
-    if (m_rectShape.getGlobalBounds().contains(mousePos))
+  if (m_rectShape.getGlobalBounds().contains(mousePos))
+  {
+    m_isClicked = true;
+    if (m_clickAction != nullptr)
     {
-        m_isClicked = true;
-        if (m_clickAction != nullptr)
-        {
-            clickAction(mousePos);
-        }
+      clickAction(mousePos);
     }
+  }
 }
 
-void Button::setClickAction(std::function<void(sf::Vector2f, Button&)> clickAction)
+void Button::setClickAction(void (*clickAction)(sf::Vector2f, Button&))
 {
-    m_clickAction = clickAction;
+  m_clickAction = clickAction;
 }
 
 void Button::clickAction(sf::Vector2f mousePos)
 {
-    m_clickAction(mousePos, *this);
+  (*m_clickAction)(mousePos, *this);
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(m_rectShape, states);
+  target.draw(m_rectShape, states);
 };

@@ -11,19 +11,19 @@ int runGame(int framerate)
 
   Button button(sf::Vector2f(100, 100), sf::Vector2f(200, 50), sf::Color::Green);
 
-  auto clickAction = [](sf::Vector2f mousePos, Button& button) {
+  auto clickAct = [](sf::Vector2f mousePos, Button& button) {
     std::cout << "Button pressed!" << std::endl;
     if (button.m_rectShape.getFillColor() == sf::Color::Green)
     {
-        button.m_rectShape.setFillColor(sf::Color::Blue);
+      button.m_rectShape.setFillColor(sf::Color::Blue);
     }
     else
     {
-        button.m_rectShape.setFillColor(sf::Color::Green);
+      button.m_rectShape.setFillColor(sf::Color::Green);
     }
   };
 
-  button.setClickAction(clickAction);
+  button.setClickAction(clickAct);
 
   sf::Texture texture;
   if (!texture.loadFromFile("assets/cmake.png"))
@@ -44,7 +44,8 @@ int runGame(int framerate)
         }
         else if (event->is<sf::Event::MouseButtonPressed>())
         {
-          button.onClick(sf::Vector2f(sf::Mouse::getPosition(window)));
+          sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
+          button.onClick(mousePos);
         }
 
       window.clear();

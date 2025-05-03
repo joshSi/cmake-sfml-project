@@ -5,7 +5,7 @@
 class Clickable : public sf::Drawable
 {
 public:
-    virtual void onClick(sf::Vector2f mousePos) = 0;
+  virtual void onClick(sf::Vector2f mousePos) = 0;
 };
 
 #endif
