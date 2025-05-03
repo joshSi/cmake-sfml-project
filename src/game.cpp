@@ -1,7 +1,8 @@
 #include "game.h"
 #include "button.h"
-#include <optional>
 #include <SFML/Graphics.hpp>
+#include <optional>
+#include <iostream>
 
 int runGame(int framerate)
 {
@@ -11,14 +12,15 @@ int runGame(int framerate)
   Button button(sf::Vector2f(100, 100), sf::Vector2f(200, 50), sf::Color::Green);
 
   auto clickAction = [](sf::Vector2f mousePos, Button& button) {
-      if (button.m_rectShape.getFillColor() == sf::Color::Green)
-      {
-          button.m_rectShape.setFillColor(sf::Color::Blue);
-      }
-      else
-      {
-          button.m_rectShape.setFillColor(sf::Color::Green);
-      }
+    std::cout << "Button pressed!" << std::endl;
+    if (button.m_rectShape.getFillColor() == sf::Color::Green)
+    {
+        button.m_rectShape.setFillColor(sf::Color::Blue);
+    }
+    else
+    {
+        button.m_rectShape.setFillColor(sf::Color::Green);
+    }
   };
 
   button.setClickAction(clickAction);

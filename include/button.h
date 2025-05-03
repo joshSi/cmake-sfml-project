@@ -2,6 +2,7 @@
 #define BUTTON_H
 #include <SFML/Graphics.hpp>
 #include "clickable.h"
+#include <functional>
 
 class Button : public Clickable
 {

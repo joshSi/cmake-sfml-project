@@ -1,6 +1,5 @@
 #include "button.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 Button::Button(sf::Vector2f position, sf::Vector2f size, sf::Color color)
 {
@@ -15,7 +14,6 @@ void Button::onClick(sf::Vector2f mousePos)
     if (m_rectShape.getGlobalBounds().contains(mousePos))
     {
         m_isClicked = true;
-        std::cout << "Button pressed!" << std::endl;
         if (m_clickAction != nullptr)
         {
             clickAction(mousePos);
