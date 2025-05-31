@@ -38,15 +38,15 @@ int runGame(int framerate)
   {
     while (const std::optional event = window.pollEvent())
     {
-        if (event->is<sf::Event::Closed>())
-        {
-          window.close();
-        }
-        else if (event->is<sf::Event::MouseButtonPressed>())
-        {
-          sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
-          button.onClick(mousePos);
-        }
+      if (event->is<sf::Event::Closed>())
+      {
+        window.close();
+      }
+      else if (event->is<sf::Event::MouseButtonPressed>())
+      {
+        sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
+        button.onClick(mousePos);
+      }
 
       window.clear();
       window.draw(sprite);
