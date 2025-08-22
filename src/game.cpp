@@ -47,12 +47,12 @@ int runGame(int framerate)
         sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
         button.onClick(mousePos);
       }
-
-      window.clear();
-      window.draw(sprite);
-      window.draw(button);
-      window.display();
     }
+
+    window.clear();
+    window.draw(sprite);
+    window.draw(button);
+    window.display();
   }
   return 0;
 }
